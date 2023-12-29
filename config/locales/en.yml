@@ -1,0 +1,8 @@
+en:
+  application_name: 'Flexhire Code Test'
+  profile: 
+    title: 'Profile'
+    alt: 'All information about user'
+  jobs:
+    title: 'Jobs'
+    alt: 'Show applications, and their status'
