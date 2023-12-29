@@ -1,0 +1,32 @@
+# .editorconfig file for Ruby on Rails projects
+
+# Set the indentation style to spaces (2 spaces by default)
+[*]
+indent_style = space
+indent_size = 2
+
+# Apply specific settings for Ruby files
+[*.rb]
+indent_size = 2
+
+# Apply specific settings for YAML files (database configuration, etc.)
+[*.yml]
+indent_size = 2
+
+# Apply specific settings for HTML and ERB files
+[*.html.erb]
+indent_style = html
+indent_size = 2
+
+# Apply specific settings for JavaScript files
+[*.js]
+indent_size = 2
+
+# Apply specific settings for CSS and SCSS files
+[*.css]
+[*.scss]
+indent_size = 2
+
+# Ignore minified or automatically generated files
+[*.{min.js,min.css,manifest.json,generated.rb}]
+charset = utf-8
