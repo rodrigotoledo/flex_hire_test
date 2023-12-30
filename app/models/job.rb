@@ -1,4 +1,3 @@
-require 'api_user'
 class Job < ApplicationRecord
   validates :data, presence: true
   def self.return_current

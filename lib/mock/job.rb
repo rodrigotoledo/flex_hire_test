@@ -10,7 +10,8 @@ module Mock
             "jobs": [],
             "name": 'Rodrigo Toledo',
             "avatarUrl": "https://cdn.filestackcontent.com/cyvlkEf9TSiKCKFoLWvQ",
-            "phone": "+5533991221596"
+            "phone": "+5533991221596",
+            "status": 'unverified'
           }
         }
       }
