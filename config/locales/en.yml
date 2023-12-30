@@ -3,6 +3,17 @@ en:
   profile: 
     title: 'Profile'
     alt: 'All information about user'
+    back_to_main_page: Back to Main Page
+    data_not_available_title: Profile Data Not Available
+    data_not_available_description: The profile information is currently unavailable, and the latest data could not be retrieved. Please check the source or try again later.
+    refresh: Refresh
+    phone: "Phone: %{phone}"
+    status: "Status: %{status}"
+    skills_title: Skills
+    no_skills_obtained: No Skills Obtained
+    experience: "Experience: %{experience}"
+    email_subscriptions_title: Email Subscriptions
+    answers_title: Answers
   jobs:
     title: 'Jobs'
     alt: 'Show applications, and their status'

@@ -72,6 +72,5 @@ gem "tailwindcss-rails", "~> 2.1"
 
 gem 'graphql'
 gem 'graphql-client'
-gem 'font-awesome-rails'
 gem 'faraday'
 gem "graphiql-rails", group: :development

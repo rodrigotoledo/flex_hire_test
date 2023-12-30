@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FlexHire</title>
+    <title><%=t('application_name')%></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,9 +11,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="bg-blue-100">
-      <div class="flex justify-center items-center h-screen">
+  <body class='bg-blue-100'>
+    <main class="h-screen">
+      <div class="flex justify-center items-center">
         <div class="text-center">
           <%=render 'layouts/application_name' %>
           <%= yield %>
