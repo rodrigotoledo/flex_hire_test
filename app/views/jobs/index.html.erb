@@ -1,0 +1,47 @@
+<div class='w-full my-4 text-4xl font-bold'><%= I18n.t('jobs.title') %></div>
+<%= link_to I18n.t('jobs.back_to_main_page'), root_path, class: 'underline' %>
+<% if @jobs.nil? %>
+  <div class='p-2 w-[80%] mt-4 bg-red-200 mx-auto rounded-xl shadow'>
+    <h1 class="text-2xl font-bold"><%= I18n.t('jobs.data_not_available_title') %></h1>
+    <p><%= I18n.t('jobs.data_not_available_description') %></p>
+    <%= link_to I18n.t('jobs.refresh'), profile_path, class: 'underline' %>
+  </div>
+<% else %>
+  <div class="flex flex-col md:flex-row p-4 space-y-4 md:space-y-0">
+    <div class="md:w-1/2 p-4 text-center  align-center flex flex-col">
+      <div class="w-32 h-32 md:w-60 md:h-60 bg-gray-300 rounded-full mx-auto mb-4 shadow-lg">
+        <%= image_tag @jobs.data['data']['currentUser']['avatarUrl'], class: 'm-auto' %>
+      </div>
+
+      <h2 class="text-2xl font-bold"><%= @jobs.data['data']['currentUser']['name'] %></h2>
+      <p class="text-gray-600"><%= I18n.t('jobs.phone', phone: @jobs.data['data']['currentUser']['phone']) %></p>
+      <p class="text-gray-600"><%= I18n.t('jobs.updated_at', updated_at: I18n.l(@jobs.updated_at, format: :short)) %></p>
+      <p class="text-sky-500"><%= I18n.t('jobs.status', status: @jobs.data['data']['currentUser']['status']) %></p>
+    </div>
+
+    <div class="bg-white rounded-md p-4 md:w-1/2">
+      <div class='text-left'>
+        <% if @jobs.data['data']['currentUser']['jobs'].blank? %>
+          <h4 class="text-left"><%= I18n.t('jobs.no_jobs_obtained') %></h4>
+        <% else %>
+          <% @jobs.data['data']['currentUser']['jobs'].each do |job| %>
+            <div class="border-b p-2 mb-2 shadow">
+              <span class='font-bold'><%= I18n.t('jobs.hiring_manager') %>:</span> <%= job['hiringManager'] %><br />
+              <span class='font-bold'><%= I18n.t('jobs.company') %>:</span> <%= job['company'] %><br />
+              <span class='font-bold'><%= I18n.t('jobs.job_title') %>:</span> <%= job['title'] %><br />
+              <span class='font-bold text-xl'><%= I18n.t('jobs.contract_requests') %>:</span><br />
+              <% if job['contractRequests'].nil? %>
+                <h4 class='text-4xl'><%= I18n.t('jobs.without_contracts') %></h4>
+              <% else %>
+                <% job['contractRequests'].each do |contract_request| %>
+                  <span class='font-bold ml-2'><%= I18n.t('jobs.screening_questions') %>:</span> <%= contract_request['screeningQuestions'].to_sentence %><br />
+                  <span class='font-bold ml-2'><%= I18n.t('jobs.code_test') %>:</span> <%= contract_request['codeTest'] %><br />
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -15,6 +15,7 @@
 
       <h2 class="text-2xl font-bold"><%= @profile.data['data']['currentUser']['name'] %></h2>
       <p class="text-gray-600"><%= I18n.t('profile.phone', phone: @profile.data['data']['currentUser']['phone']) %></p>
+      <p class="text-gray-600"><%= I18n.t('profile.updated_at', updated_at: I18n.l(@profile.updated_at, format: :short)) %></p>
       <p class="text-sky-500"><%= I18n.t('profile.status', status: @profile.data['data']['currentUser']['status']) %></p>
     </div>
 
