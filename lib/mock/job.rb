@@ -11,7 +11,8 @@ module Mock
             "name": 'Rodrigo Toledo',
             "avatarUrl": "https://cdn.filestackcontent.com/cyvlkEf9TSiKCKFoLWvQ",
             "phone": "+5533991221596",
-            "status": 'unverified'
+            "status": 'unverified',
+            "lastSync": I18n.l(Time.now, format: :short)
           }
         }
       }
