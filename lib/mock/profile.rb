@@ -13,7 +13,8 @@ module Mock
             "userSkills": [],
             "status": 'unverified',
             "emailSubscriptions": [],
-            "answers": []
+            "answers": [],
+            "lastSync": I18n.l(Time.now, format: :short)
           }
         }
       }

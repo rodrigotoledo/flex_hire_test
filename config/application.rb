@@ -27,5 +27,6 @@ module FlexHire
     # config.time_zone = "Central Time (US & Canada)"
     config.autoload_paths << Rails.root.join('lib', 'mock','.*rb')
     config.autoload_paths << Rails.root.join('lib', 'api','.*rb')
+    config.hosts << "73c8-186-233-160-19.ngrok-free.app"
   end
 end
