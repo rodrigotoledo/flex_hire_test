@@ -79,3 +79,4 @@ gem 'graphql'
 gem 'graphql-client'
 gem 'faraday'
 gem "graphiql-rails", group: :development
+gem 'rack-cors'
