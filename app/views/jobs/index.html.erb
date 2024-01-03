@@ -1,30 +1,30 @@
 <div class='w-full my-4 text-4xl font-bold'><%= I18n.t('jobs.title') %></div>
 <%= link_to I18n.t('jobs.back_to_main_page'), root_path, class: 'underline' %>
-<% if @jobs.nil? %>
+<% if @user_data.nil? %>
   <div class='p-2 w-[80%] mt-4 bg-red-200 mx-auto rounded-xl shadow'>
     <h1 class="text-2xl font-bold"><%= I18n.t('jobs.data_not_available_title') %></h1>
     <p><%= I18n.t('jobs.data_not_available_description') %></p>
     <%= link_to I18n.t('jobs.refresh'), profile_path, class: 'underline' %>
   </div>
 <% else %>
-  <div class="flex flex-col md:flex-row p-4 space-y-4 md:space-y-0">
+  <div class="flex flex-col md:flex-row p-4 space-y-4 md:space-y-0 md:space-x-2">
     <div class="md:w-1/2 p-4 text-center  align-center flex flex-col">
       <div class="w-32 h-32 md:w-60 md:h-60 bg-gray-300 rounded-full mx-auto mb-4 shadow-lg">
-        <%= image_tag @jobs.data['data']['currentUser']['avatarUrl'], class: 'm-auto' %>
+        <%= image_tag @user_data.data['currentUser']['avatarUrl'], class: 'm-auto' %>
       </div>
 
-      <h2 class="text-2xl font-bold"><%= @jobs.data['data']['currentUser']['name'] %></h2>
-      <p class="text-gray-600"><%= I18n.t('jobs.phone', phone: @jobs.data['data']['currentUser']['phone']) %></p>
-      <p class="text-gray-600"><%= I18n.t('jobs.updated_at', updated_at: I18n.l(@jobs.updated_at, format: :short)) %></p>
-      <p class="text-sky-500"><%= I18n.t('jobs.status', status: @jobs.data['data']['currentUser']['status']) %></p>
+      <h2 class="text-2xl font-bold"><%= @user_data.data['currentUser']['name'] %></h2>
+      <p class="text-gray-600"><%= I18n.t('jobs.phone', phone: @user_data.data['currentUser']['phone']) %></p>
+      <p class="text-gray-600"><%= I18n.t('jobs.last_sync', last_sync: I18n.l(@user_data.updated_at, format: :short)) %></p>
+      <p class="text-sky-500"><%= I18n.t('jobs.status', status: @user_data.data['currentUser']['status']) %></p>
     </div>
 
     <div class="bg-white rounded-md p-4 md:w-1/2">
       <div class='text-left'>
-        <% if @jobs.data['data']['currentUser']['jobs'].blank? %>
+        <% if @user_data.data['currentUser']['allJobs']['nodes'].blank? %>
           <h4 class="text-left"><%= I18n.t('jobs.no_jobs_obtained') %></h4>
         <% else %>
-          <% @jobs.data['data']['currentUser']['jobs'].each do |job| %>
+          <% @user_data.data['currentUser']['allJobs']['nodes'].each do |job| %>
             <div class="border-b p-2 mb-2 shadow">
               <span class='font-bold'><%= I18n.t('jobs.hiring_manager') %>:</span> <%= job['hiringManager'] %><br />
               <span class='font-bold'><%= I18n.t('jobs.company') %>:</span> <%= job['company'] %><br />

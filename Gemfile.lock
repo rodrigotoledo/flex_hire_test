@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/rmosolgo/graphql-client.git
+  revision: 27ef61fd5d68055401d5d023e5a0f36a766c2664
+  ref: 27ef61f
+  specs:
+    graphql-client (0.18.0)
+      activesupport (>= 3.0)
+      graphql
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -125,9 +134,6 @@ GEM
       sprockets-rails
     graphql (2.2.3)
       racc (~> 1.4)
-    graphql-client (0.18.0)
-      activesupport (>= 3.0)
-      graphql
     guard (2.18.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -358,7 +364,7 @@ DEPENDENCIES
   faraday
   graphiql-rails
   graphql
-  graphql-client
+  graphql-client!
   guard
   guard-rspec
   importmap-rails

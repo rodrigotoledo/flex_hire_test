@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'profile', controller: 'profile', action: 'index'
-      get 'jobs', controller: 'jobs', action: 'index'
+      get 'user', controller: 'user', action: 'index'
     end
   end
   get 'profile', as: :profile, controller: 'profile', action: 'index'

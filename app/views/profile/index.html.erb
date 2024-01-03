@@ -1,6 +1,6 @@
 <div class='w-full my-4 text-4xl font-bold'><%= I18n.t('profile.title') %></div>
 <%= link_to I18n.t('profile.back_to_main_page'), root_path, class: 'underline' %>
-<% if @profile.nil? %>
+<% if @user_data.nil? %>
   <div class='p-2 w-[80%] mt-4 bg-red-200 mx-auto rounded-xl shadow'>
     <h1 class="text-2xl font-bold"><%= I18n.t('profile.data_not_available_title') %></h1>
     <p><%= I18n.t('profile.data_not_available_description') %></p>
@@ -8,38 +8,38 @@
   </div>
 <% else %>
   <div class="flex flex-col md:flex-row p-4 space-y-4 md:space-y-0">
-    <div class="md:w-1/2 p-4 text-center justify-center align-center flex flex-col">
+    <div class="md:w-1/2 p-4 text-center justify-center Walign-center flex flex-col">
       <div class="w-32 h-32 md:w-60 md:h-60 bg-gray-300 rounded-full mx-auto mb-4 shadow-lg">
-        <%= image_tag @profile.data['data']['currentUser']['avatarUrl'], class: 'm-auto' %>
+        <%= image_tag @user_data.data['currentUser']['avatarUrl'], class: 'm-auto' %>
       </div>
 
-      <h2 class="text-2xl font-bold"><%= @profile.data['data']['currentUser']['name'] %></h2>
-      <p class="text-gray-600"><%= I18n.t('profile.phone', phone: @profile.data['data']['currentUser']['phone']) %></p>
-      <p class="text-gray-600"><%= I18n.t('profile.updated_at', updated_at: I18n.l(@profile.updated_at, format: :short)) %></p>
-      <p class="text-sky-500"><%= I18n.t('profile.status', status: @profile.data['data']['currentUser']['status']) %></p>
+      <h2 class="text-2xl font-bold"><%= @user_data.data['currentUser']['name'] %></h2>
+      <p class="text-gray-600"><%= I18n.t('profile.phone', phone: @user_data.data['currentUser']['phone']) %></p>
+      <p class="text-gray-600"><%= I18n.t('profile.last_sync', last_sync: I18n.l(@user_data.updated_at, format: :short)) %></p>
+      <p class="text-sky-500"><%= I18n.t('profile.status', status: @user_data.data['currentUser']['status']) %></p>
     </div>
 
 
     <div class="bg-white rounded-md p-4 md:w-1/2">
       <div class='text-left'>
         <h3 class="text-2xl font-semibold"><%= I18n.t('profile.skills_title') %></h3>
-        <% if @profile.data['data']['currentUser']['userSkills'].blank? %>
+        <% if @user_data.data['currentUser']['userSkills'].blank? %>
           <h4 class="text-left"><%= I18n.t('profile.no_skills_obtained') %></h4>
         <% else %>
           <ul class="list-disc pl-6 mt-2">
-            <% @profile.data['data']['currentUser']['userSkills'].each do |skill| %>
+            <% @user_data.data['currentUser']['userSkills'].each do |skill| %>
               <li class="mb-2"><span class='font-bold'><%= skill['skill']['name'] %></span> - <%= I18n.t('profile.experience', experience: skill['experience']) %></li>
             <% end %>
           </ul>
         <% end %>
       </div>
 
-      <h3 class="text-2xl font-semibold mt-4 text-left"><%= I18n.t('profile.email_subscriptions_title') %>: <span class='text-sm'><%= @profile.data['data']['currentUser']['emailSubscriptions'].to_a.pluck('subscriptionName').to_sentence %></span></h3>
+      <h3 class="text-2xl font-semibold mt-4 text-left"><%= I18n.t('profile.email_subscriptions_title') %>: <span class='text-sm'><%= @user_data.data['currentUser']['emailSubscriptions'].to_a.pluck('subscriptionName').to_sentence %></span></h3>
 
       <div class='text-left'>
         <h3 class="text-2xl font-semibold mt-4"><%= I18n.t('profile.answers_title') %></h3>
         <ul class="list-none pl-6 mt-2">
-          <% @profile.data['data']['currentUser']['answers'].each do |answer| %>
+          <% @user_data.data['currentUser']['answers'].each do |answer| %>
             <li class="mb-2"><%= link_to answer['optimizedUrl'], answer['optimizedUrl'], target: '_top' %></li>
           <% end %>
         </ul>
