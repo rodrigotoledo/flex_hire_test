@@ -1,36 +1,27 @@
 require 'graphql/client'
 require 'graphql/client/http'
+
 module Api
   class User
-    def self.graphql_client
-      schema_file = Rails.root.join('config/schema.json')
-      schema_content = File.read(schema_file)
-      schema = GraphQL::Client.load_schema(schema_content)
-
-      http_client = GraphQL::Client::HTTP.new(ENV.fetch('FLEXHIRE_URI')) do
-        def headers(context)
-          {
-            'FLEXHIRE-API-KEY' => ENV.fetch('FLEXHIRE_API_KEY')
-          }
-        end
+    HTTP_CLIENT = GraphQL::Client::HTTP.new(ENV.fetch('FLEXHIRE_URI')) do
+      def headers(context)
+        { 'FLEXHIRE-API-KEY' => ENV.fetch('FLEXHIRE_API_KEY') }
       end
-      GraphQL::Client.new(schema: schema, execute: http_client)
-    end
-    
-    def self.profile
-      return Mock::Profile.fake_data
-      # TODO: I have problems to get data in the api endpoint
-      # graphql_client = Api::User.graphql_client
-      # query = graphql_client.parse(File.read('app/graphql/queries/profile_query.graphql'))
-      # graphql_client.query(query)
     end
 
-    def self.jobs
-      return Mock::Job.fake_data
-      # TODO: I have problems to get data in the api endpoint
-      # graphql_client = Api::User.graphql_client
-      # query = graphql_client.parse(File.read('app/graphql/queries/jobs_query.graphql'))
-      # graphql_client.query(query)
+    SCHEMA_LOADER = GraphQL::Client.load_schema(File.read(Rails.root.join('config/schema.json')))
+    CLIENT = GraphQL::Client.new(schema: SCHEMA_LOADER, execute: HTTP_CLIENT)
+
+    QUERY = CLIENT.parse(File.read(Rails.root.join('app/graphql/queries/query.graphql')))
+
+    def self.data
+      result = CLIENT.query(QUERY)
+
+      raise "Error in GraphQL query: #{result.errors}" if result.errors.any?
+
+      # TODO: should use data but the return its something like currentUser without allJobs and other fields
+      # result.data
+      result.original_hash['data']
     end
   end
 end

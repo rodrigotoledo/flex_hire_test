@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
   def index
-    @jobs = Job.return_current
+    @user_data = User.return_current
   end
 end

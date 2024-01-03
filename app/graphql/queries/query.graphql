@@ -1,0 +1,32 @@
+query {
+  currentUser {
+    allJobs {
+      nodes {
+        hiringManager {
+          name
+          timelineEntries {
+            company {
+              name
+            }
+          }
+        }
+      }
+    }
+    name
+    avatarUrl
+    phone
+    userSkills {
+      experience
+      skill {
+        name
+      }
+    }
+    status
+    emailSubscriptions {
+      subscriptionName
+    }
+    answers {
+      optimizedUrl
+    }
+  }
+}

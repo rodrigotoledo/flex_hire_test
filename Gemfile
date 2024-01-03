@@ -76,7 +76,7 @@ end
 gem "tailwindcss-rails", "~> 2.1"
 
 gem 'graphql'
-gem 'graphql-client'
+gem "graphql-client", github: "rmosolgo/graphql-client", ref: "27ef61f"
 gem 'faraday'
 gem "graphiql-rails", group: :development
 gem 'rack-cors'

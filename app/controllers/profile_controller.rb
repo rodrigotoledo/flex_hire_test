@@ -1,5 +1,5 @@
 class ProfileController < ApplicationController
   def index
-    @profile = Profile.return_current
+    @user_data = User.return_current
   end
 end
